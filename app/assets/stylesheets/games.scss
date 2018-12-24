@@ -2,7 +2,43 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.test {
+	position: absolute;
+	background-color: red;
+	width: 25px;
+	height: 25px;
+}
+
+.char-list {
+	list-style: none;
+	padding: 0;
+	margin-left: 15px;
+
+	li {
+		padding: 5px;
+		border: 1px solid red;
+		border-radius: 5px;
+	}
+}
+
+.found {
+	display: none;
+}
+
+.characters {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.char-img {
+	width: 100px;
+}
+
+#game {
+	display: inline-block;
+}
+
 #game img {
-	width: 800px;
-	height: 600px;
+	width: 1000px;
+	height: 800px;
 }
