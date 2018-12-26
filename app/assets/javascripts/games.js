@@ -31,11 +31,16 @@ window.onload = function() {
 			mode: 'cors',
 			method: 'POST',
 			headers: {
-				Accept: 'application/json',
+				Accept: 'application/json, application/xhtml+xml',
 				'Content-Type': 'application/json',
 				'X-CSRF-Token': token
 			},
-			body: JSON.stringify({ game: { xAxis: event.pageX, yAxis: event.pageY }})
+			body: JSON.stringify({ 
+				game: { 
+					id: window.location.href.split("/").pop(), 
+					xAxis: event.pageX, 
+					yAxis: event.pageY 
+				}})
 			 })
 		.then(response => {
 			console.log(response)
@@ -46,7 +51,10 @@ window.onload = function() {
 				console.log(response)
 				charLayer(response)
 				charFound(response.id)
-				checkWin();
+				 if (checkWin) {
+				 	console.log("waahahahaha")
+				 	alert("YOU WON !!!")
+				 }
 			}
 		})
 		.catch(err => console.log(err))
@@ -76,9 +84,9 @@ window.onload = function() {
 	}
 
 	function checkWin() {
-		const charLeft = charList.filter(char => char.className.includes('found'))
-
-		console.log(charLeft.length > 0 ? true : false);
+		const charLeft = charList.every(char => char.className.includes('found'))
+		console.log(charList)
+		console.log(charLeft);
 	}
 
 	function winScreen() {
@@ -87,5 +95,6 @@ window.onload = function() {
 
 		winText.textContent = "CONGRATULATIONS, YOU WON!";
 		win.appendChild(winText);
+		alert("YOU WON!")
 	}
 }

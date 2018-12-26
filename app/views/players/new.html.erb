@@ -1,0 +1,14 @@
+<div class="banner">
+	<%= image_tag ("banner.jpg") %>
+</div>
+
+<div class="create-player">
+	<h1>Create Player</h1>
+
+	<div class="player-form">
+		<%= form_for @player do |f| %>
+			<%= f.text_field :name, placeholder: "e.g. John" %>
+			<%= f.submit "Create" %>
+		<% end %>
+	</div>
+</div>
