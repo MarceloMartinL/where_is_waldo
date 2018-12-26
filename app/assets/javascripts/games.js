@@ -8,7 +8,6 @@ window.onload = function() {
 		console.log(e.pageX);
 		console.log(e.pageY);
 		search(e);
-		console.log(e);
 	})
 
 	function colorPoint(event) {
@@ -48,13 +47,10 @@ window.onload = function() {
 		})
 		.then(response => {
 			if (response) { 
-				console.log(response)
-				charLayer(response)
-				charFound(response.id)
-				 if (checkWin) {
-				 	console.log("waahahahaha")
-				 	alert("YOU WON !!!")
-				 }
+				console.log(response);
+				charLayer(response);
+				charFound(response.id);
+				checkWin();
 			}
 		})
 		.catch(err => console.log(err))
@@ -74,9 +70,7 @@ window.onload = function() {
 	}
 
 	function charFound(id) {
-
 		charList.forEach(char => {
-			console.log(char)
 			if (char.attributes.char_id.textContent == id) {
 				char.classList.add('found')
 			}
@@ -84,10 +78,23 @@ window.onload = function() {
 	}
 
 	function checkWin() {
-		const charLeft = charList.every(char => char.className.includes('found'))
-		console.log(charList)
-		console.log(charLeft);
+		fetch('/checkwin', { 
+			mode: 'cors'
+		})
+		.then(response => { 
+			return response.json()
+		})
+		.then(response =>  {
+			if (response.win) window.location.pathname = 'scores' 
+		})
+		.catch(err => console.log(err))
 	}
+
+	// function checkWin() {
+	// 	const charLeft = charList.every(char => char.className.includes('found'))
+	// 	console.log(charList)
+	// 	console.log(charLeft);
+	// }
 
 	function winScreen() {
 		const win = document.createElement('div');

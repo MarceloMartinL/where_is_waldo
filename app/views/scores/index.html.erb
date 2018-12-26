@@ -1,1 +1,25 @@
-<h1>TOP SCORES</h1>
+<div class="results">
+	<h2>Congratulations <%= @player.name %></h2>
+	<h2>Your score was: <%= @player.scores.last.time %> seconds</h2>
+
+	<%= link_to "Play Again", @scores.first.game, class: 'play-again-btn' %>
+
+	<h1>Laderboard</h1>
+</div>
+
+<table>
+	<thead>
+		<tr>
+			<th>Player</th>
+			<th>Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @scores.each do |score| %>
+			<tr>
+				<td><%= score.player.name %></td>
+				<td><%= score.time %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
