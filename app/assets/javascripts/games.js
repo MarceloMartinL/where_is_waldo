@@ -10,20 +10,6 @@ window.onload = function() {
 		search(e);
 	})
 
-	function colorPoint(event) {
-		const game = document.querySelector('#game');
-		const div = document.createElement('div');
-
-		div.style.width = '25px';
-		div.style.height = '25px';
-		div.style.background = 'red';
-		div.style.position = 'absolute';
-		div.style.left = event.pageX + 'px';
-		div.style.top = event.pageY + 'px';
-
-		game.appendChild(div);
-	}
-
 	function search(event) {
 		const token = document.getElementsByName("csrf-token")[0].content
 		fetch('/search', { 
@@ -42,12 +28,10 @@ window.onload = function() {
 				}})
 			 })
 		.then(response => {
-			console.log(response)
 			return response.json()
 		})
 		.then(response => {
 			if (response) { 
-				console.log(response);
 				charLayer(response);
 				charFound(response.id);
 				checkWin();
@@ -89,6 +73,7 @@ window.onload = function() {
 		})
 		.catch(err => console.log(err))
 	}
+}
 
 	// function checkWin() {
 	// 	const charLeft = charList.every(char => char.className.includes('found'))
@@ -96,12 +81,12 @@ window.onload = function() {
 	// 	console.log(charLeft);
 	// }
 
-	function winScreen() {
-		const win = document.createElement('div');
-		const winText = document.createElement('h1');
+	// function winScreen() {
+	// 	const win = document.createElement('div');
+	// 	const winText = document.createElement('h1');
 
-		winText.textContent = "CONGRATULATIONS, YOU WON!";
-		win.appendChild(winText);
-		alert("YOU WON!")
-	}
-}
+	// 	winText.textContent = "CONGRATULATIONS, YOU WON!";
+	// 	win.appendChild(winText);
+	// 	alert("YOU WON!")
+	// }
+

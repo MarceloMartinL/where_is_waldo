@@ -2,7 +2,7 @@
 	<h2>Congratulations <%= @player.name %></h2>
 	<h2>Your score was: <%= @player.scores.last.time %> seconds</h2>
 
-	<%= link_to "Play Again", @scores.first.game, class: 'play-again-btn' %>
+	<%= link_to "Play Again", @scores.first.game, class: 'play-again-btn', 'data-turbolinks': 'false' %>
 
 	<h1>Laderboard</h1>
 </div>

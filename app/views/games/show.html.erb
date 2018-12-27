@@ -1,4 +1,8 @@
-<h1>Where is Waldo ?</h1>
+<% content_for :head do %>
+	<%= javascript_include_tag 'games' %>
+<% end %>
+
+<h1>Find Waldo and his friends...</h1>
 
 <div id="game">
 	<%= image_tag(@game.image, class: 'game-img', id: @game.id) %>
@@ -8,6 +12,8 @@
 	<% @game.characters.each do |char| %>
 		<li char_id=<%= char.id %>>
 			<%= image_tag(char.image, class: 'char-img') %>
+			<hr>
+			<h3><%= char.name %></h3>
 		</li>
 	<% end %>
 	</ul>
